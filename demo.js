@@ -5,7 +5,7 @@ import {MyToolkit} from './mytoolkit.js';
 // Implement a MyToolkit Button
 var btn = new MyToolkit.Button;
 btn.move(150,10);
-btn.setText("Some Button");
+btn.setText("Button Name");
 // console.log(btn.textContent());
 btn.onclick(function(e){
 	console.log(e);
@@ -22,6 +22,8 @@ btn.onmouseup(function(e){
 
 var checkbx = new MyToolkit.CheckBox;
 checkbx.move(150,10);
+checkbx.setText("Checkbox");
+
 
 checkbx.onclick(function(e){
 	console.log(e);
@@ -40,6 +42,7 @@ var n = 4;
 for(var i = 0; i < n; i++){
 	var radioBtn = new MyToolkit.RadioButton;
 	radioBtn.move(150,5);
+	radioBtn.setText("Radio " + (i+1));
 	radioBtn.onclick(function(e){
 		console.log(e);
 	});
