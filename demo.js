@@ -38,21 +38,43 @@ checkbx.onmouseup(function(e){
 	console.log(e);
 });
 
-var n = 4;
-for(var i = 0; i < n; i++){
-	var radioBtn = new MyToolkit.RadioButton;
-	radioBtn.move(150,5);
-	radioBtn.setText("Radio " + (i+1));
-	radioBtn.onclick(function(e){
+var groupRadio = [];
+for(var i = 0; i < 4; i++){
+	groupRadio[i] = new MyToolkit.RadioButton(i);
+	groupRadio[i].move(150,5);
+	groupRadio[i].setText("Radio " + (i+1))
+	groupRadio[i].removeToggle(false);
+	groupRadio[i].onclick(function(e){
 		console.log(e);
 	});
-	radioBtn.onmouseover(function(e){
+	groupRadio[i].onmouseover(function(e){
 		console.log(e);
 	});
-	radioBtn.onmouseout(function(e){
+	groupRadio[i].onmouseout(function(e){
 		console.log(e);
 	});
-	radioBtn.onmouseup(function(e){
+	groupRadio[i].onmouseup(function(e){
 		console.log(e);
 	});
 }
+var txtBox = new MyToolkit.TextBox;
+TextBox.move(150,10);
+
+// var n = 4;
+// for(var i = 0; i < n; i++){
+// 	var radioBtn = new MyToolkit.RadioButton;
+// 	radioBtn.move(150,5);
+// 	radioBtn.setText("Radio " + (i+1));
+// 	radioBtn.onclick(function(e){
+// 		console.log(e);
+// 	});
+// 	radioBtn.onmouseover(function(e){
+// 		console.log(e);
+// 	});
+// 	radioBtn.onmouseout(function(e){
+// 		console.log(e);
+// 	});
+// 	radioBtn.onmouseup(function(e){
+// 		console.log(e);
+// 	});
+// }
