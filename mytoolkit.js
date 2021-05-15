@@ -8,8 +8,8 @@ var MyToolkit = (function() {
         
         var rect = draw.rect(100,50).fill('#6699cc')
 
-        var txt = draw.text('Button')
-        .font({size: 20, family: 'Helvetica'});
+        var label = draw.text('Button')
+        .font({size: 16, family: 'Helvetica'});
         
         var clickEvent = null
         var mouseoverEvent = null
@@ -39,11 +39,11 @@ var MyToolkit = (function() {
         return {
             move: function(x, y) {
                 rect.move(x, y);
-                txt.move(x+21,y+12);
+                label.move(x+20,y+15);
             },
             setText: function(text){
-                txt.text(text);
-                rect.size(40+txt.length(),50)
+                label.text(text);
+                rect.size(40+label.length(),50)
             },
             onclick: function(eventHandler){
                 clickEvent = eventHandler
@@ -64,7 +64,7 @@ var MyToolkit = (function() {
         
         var rect = draw.rect(15,15).fill('none').stroke({ width: 2, color: '#808080' })     
 
-        var text = draw.text('Check Box Label')
+        var label = draw.text('Check Box Label')
         .font({size: 16, family: 'Helvetica'});
 
         var clickEvent = null
@@ -101,7 +101,10 @@ var MyToolkit = (function() {
         return {
             move: function(x, y) {
                 rect.move(x, y);
-                text.move(x+20,y-1)
+                label.move(x+20,y-1)
+            },
+            setText: function(text){
+                label.text(text);
             },
             onclick: function(eventHandler){
                 clickEvent = eventHandler
@@ -122,7 +125,7 @@ var MyToolkit = (function() {
         
         var circle  = draw.circle(15).fill('none').stroke({ width: 2, color: '#808080' })     
 
-        var text = draw.text('Radio Label')
+        var label = draw.text('Radio Label')
         .font({size: 16, family: 'Helvetica'});
 
         var clickEvent = null
@@ -162,7 +165,10 @@ var MyToolkit = (function() {
         return {
             move: function(x, y) {
                 circle.move(x, y);
-                text.move(x+20,y-1)
+                label.move(x+20,y-1)
+            },
+            setText: function(text){
+                label.text(text);
             },
             onclick: function(eventHandler){
                 clickEvent = eventHandler
