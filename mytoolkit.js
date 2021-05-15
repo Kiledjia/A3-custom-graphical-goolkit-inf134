@@ -60,7 +60,7 @@ var MyToolkit = (function() {
         }
     }
     var CheckBox = function(){
-        var draw = SVG().addTo('body').size('100%','100%').height(50);
+        var draw = SVG().addTo('body').size('100%','100%').height(40);
         
         var rect = draw.rect(15,15).fill('none').stroke({ width: 2, color: '#808080' })     
 
@@ -173,6 +173,11 @@ var MyToolkit = (function() {
             onclick: function(eventHandler){
                 clickEvent = eventHandler
             },
+            removeToggle: function(boolean){
+                if(boolean == true){
+                    circle.remove();
+                }
+            },
             onmouseout: function(eventHandler){
                 mouseoverEvent = eventHandler
             },
@@ -184,8 +189,93 @@ var MyToolkit = (function() {
             }
         }
     }
-    
-return {Button,CheckBox,RadioButton}
+    var TextBox = function(){
+        var draw = SVG().addTo('body').size('100%','100%');
+        var frame = draw.group();
+        frame.rect(400,145).stroke("orange").fill("White")
+        frame.click(function(event){
+            console.log("Window")
+            console.log(event)
+        })
+
+        var text = frame.text("").move(40,42)
+        
+        var caret = frame.rect(2,15).move(50,50)
+        var runner = caret.animate().width(0);
+        runner.loop(1000,1,0);
+
+        SVG.on(window,'keyup',(event)=>{
+            text.text(text.text()+event.key)
+            caret.x(text.length()+50)
+        })
+        frame.move(10,10)
+        // var circle  = draw.circle(15).fill('none').stroke({ width: 2, color: '#808080' })     
+
+        // var label = draw.text('Radio Label')
+        // .font({size: 16, family: 'Helvetica'});
+
+        var clickEvent = null
+        var mouseoverEvent = null
+        var mouseoutEvent = null
+        var mouseupEvent = null
+
+        frame.mouseover(function(){
+            this.fill({ color: 'red'})
+            if(mouseoverEvent != null)
+                mouseoverEvent(event)
+        })
+        frame.mouseout(function(){
+            this.fill({ color: 'red'})
+            if(mouseoutEvent != null)
+            mouseoutEvent(event)
+        })
+        frame.mouseup(function(){
+            if(mouseupEvent != null)
+                mouseupEvent(event)
+        })
+        frame.click(function(event){
+            // var clicked = false;
+            // if(clicked != true){
+                // var radio  = draw.circle(10).fill('black').move(circle.x()+2.6, circle.y()+2.3); 
+            //     clicked = true;
+            // }
+            // if(clicked != true){
+            // radio.click(function(event){
+            //     radio.remove();
+            //     if(clickEvent != null)
+            //     clickEvent(event)
+            // })
+                if(clickEvent != null)
+                    clickEvent(event)
+        })
+        return {
+            move: function(x, y) {
+                // circle.move(x, y);
+                // label.move(x+20,y-1)
+            },
+            setText: function(text){
+                // label.text(text);
+            },
+            onclick: function(eventHandler){
+                clickEvent = eventHandler
+            },
+            // removeToggle: function(boolean){
+            //     if(boolean == true){
+            //         circle.remove();
+            //     }
+            // },
+            onmouseout: function(eventHandler){
+                mouseoverEvent = eventHandler
+            },
+            onmouseup: function(eventHandler){
+                mouseoutEvent = eventHandler
+            },
+            onmouseover: function(eventHandler){
+                mouseupEvent = eventHandler
+            }
+        }
+    }
+return {Button,CheckBox,RadioButton,TextBox}
 }());
 
 export{MyToolkit}
