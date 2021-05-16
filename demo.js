@@ -58,7 +58,7 @@ for(var i = 0; i < 4; i++){
 	});
 }
 var txtBox = new MyToolkit.TextBox;
-TextBox.move(150,10);
+// txtBox.move(150,0);
 
 // var n = 4;
 // for(var i = 0; i < n; i++){
