@@ -192,23 +192,32 @@ var MyToolkit = (function() {
     var TextBox = function(){
         var draw = SVG().addTo('body').size('100%','100%');
         var frame = draw.group();
-        frame.rect(400,145).stroke("orange").fill("White")
+        frame.rect(400,50).stroke("#6699cc").fill("White")
         frame.click(function(event){
             console.log("Window")
             console.log(event)
         })
 
-        var text = frame.text("").move(40,42)
+        var text = frame.text("").move(20,10)
         
-        var caret = frame.rect(2,15).move(50,50)
+        var caret = frame.rect(2,15).move(20,20)
         var runner = caret.animate().width(0);
         runner.loop(1000,1,0);
 
         SVG.on(window,'keyup',(event)=>{
-            text.text(text.text()+event.key)
-            caret.x(text.length()+50)
+            if(text.length()<365){
+                text.text(text.text()+event.key)
+                caret.x(text.length()+30) 
+                console.log("Text Has Change")
+            console.log(event)
+            }  
         })
-        frame.move(10,10)
+        // while(text.length()<75){
+            frame.move(10,10)
+        // }
+        // if(te > 75){
+        //     frame.move(0,0)
+        // }
         // var circle  = draw.circle(15).fill('none').stroke({ width: 2, color: '#808080' })     
 
         // var label = draw.text('Radio Label')
@@ -220,12 +229,12 @@ var MyToolkit = (function() {
         var mouseupEvent = null
 
         frame.mouseover(function(){
-            this.fill({ color: 'red'})
+            this.fill({ color: 'black'})
             if(mouseoverEvent != null)
                 mouseoverEvent(event)
         })
         frame.mouseout(function(){
-            this.fill({ color: 'red'})
+            this.fill({ color: 'black'})
             if(mouseoutEvent != null)
             mouseoutEvent(event)
         })
