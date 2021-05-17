@@ -58,6 +58,7 @@ for(var i = 0; i < 4; i++){
 	});
 }
 var txtBox = new MyToolkit.TextBox;
+txtBox.move(50,20)
 var scrollBar = new MyToolkit.ScrollBar;
 scrollBar.move(200,0);
 scrollBar.setHeight(250);
