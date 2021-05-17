@@ -120,89 +120,51 @@ var MyToolkit = (function() {
             }
         }
     }
-    var RadioButton = function(){
-        var draw = SVG().addTo('body').size('100%','100%').height(30);
-        
-        var circle  = draw.circle(15).fill('none').stroke({ width: 2, color: '#B20098' })     
-
-        var label = draw.text('Radio Label')
-        .font({size: 16, family: 'Helvetica'}).fill("#B20098");
-
-        var clickEvent = null
-        var mouseoverEvent = null
-        var mouseoutEvent = null
-        var mouseupEvent = null
-
-        circle.mouseover(function(){
-            this.fill({ color: 'white'})
-            if(mouseoverEvent != null)
-                mouseoverEvent(event)
-        })
-        circle.mouseout(function(){
-            this.fill({ color: 'white'})
-            if(mouseoutEvent != null)
-            mouseoutEvent(event)
-        })
-        circle.mouseup(function(){
-            if(mouseupEvent != null)
-                mouseupEvent(event)
-        })
+    var RadioButton = function(radioButtons){
+        var draw = SVG().addTo('body').size('100%','100%').height(radioButtons.length*40);
+        var frame = draw.group()
+        var y = 0;
+        var btns = new Array();
+        for (var i = 0; i < radioButtons.length; i++){
+            y+=40
+            // console.log(r[i][0]);
+            var circle = draw.circle(15).fill('white').stroke({ color:"#B20098", width: 2}).move(0, y+1);
+            var txt = draw.text(radioButtons[i][0]).move(25,y).font({size: 16, family: 'Helvetica'}).fill("#B20098");
+            if (radioButtons[i][1] == true){
+                var toggle = draw.circle(11).fill('#B20098').move(2, y+3);
+                toggle.hide()
+            }
+            btns.push(circle);
+            frame.add(circle);
+            frame.add(txt);
+            frame.add(toggle);
+        }
         circle.click(function(event){
-            // var clicked = false;
-            // if(clicked != true){
-                var radio  = draw.circle(10).fill('#E500C4').move(circle.x()+2.6, circle.y()+2.3); 
-            //     clicked = true;
-            // }
-            // if(clicked != true){
-            radio.click(function(event){
-                radio.remove();
-                if(clickEvent != null)
-                clickEvent(event)
-            })
-                if(clickEvent != null)
-                    clickEvent(event)
-        })
-        return {
+            console.log(circle.attr());
+        });
+        btns.map(e => e.node.addEventListener("click", function(){ 
+            toggle.show();
+            toggle.move(e.x()+2, e.y()+2);
+        }));
+        return{
             move: function(x, y) {
-                circle.move(x, y);
-                label.move(x+20,y-1)
-            },
-            setText: function(text){
-                label.text(text);
-            },
-            onclick: function(eventHandler){
-                clickEvent = eventHandler
-            },
-            removeToggle: function(boolean){
-                if(boolean == true){
-                    circle.remove();
-                }
-            },
-            onmouseout: function(eventHandler){
-                mouseoverEvent = eventHandler
-            },
-            onmouseup: function(eventHandler){
-                mouseoutEvent = eventHandler
-            },
-            onmouseover: function(eventHandler){
-                mouseupEvent = eventHandler
+                frame.move(x, y);
             }
         }
     }
     var TextBox = function(){
         var draw = SVG().addTo('body').size('100%','100%').height(80);
         var frame = draw.group();
-        frame.rect(400,30).stroke("#FF66E8").fill("White")
+        frame.rect(400,30).stroke("#B20098").fill("White")
 
         var eventNum = [13, 16, 17, 18, 33, 34,35,36, 37, 45, 174, 175, 176, 177, 178]
         
         var text = frame.text("").move(10,0)
         
-        var caret = frame.rect(2,15)
-            //    var caret = frame.rect(375,15)
+        var caret = frame.rect(1,15)
+        
         var runner = caret.animate().width(0);
         runner.loop(1000,1,0);
-        //        runner.loop(1000,1000,1000);
 
         caret.hide()
         var pass = false;
@@ -294,22 +256,18 @@ var MyToolkit = (function() {
         var mouseupEvent = null
 
         thumb.mouseover(function(){
-            this.fill({ color: '#B20098'})
             if(mouseoverEvent != null)
                 mouseoverEvent(event)
         })
         thumb.mouseout(function(){
-            this.fill({ color: '#FF66E8'})
             if(mouseoutEvent != null)
             mouseoutEvent(event)
         })
         thumb.mouseup(function(){
-            this.fill({ color: '#FF66E8'})
             if(mouseupEvent != null)
                 mouseupEvent(event)
         })
         thumb.click(function(event){
-            this.fill({ color: '#B20098'})
             // thumb.move(frame.x()+2.5,150)
                 if(clickEvent != null)
                     clickEvent(event)
