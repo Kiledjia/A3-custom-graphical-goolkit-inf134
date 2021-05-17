@@ -58,7 +58,7 @@ progBar.move(50,30);
 progBar.setWidth(350);
 var slider = new MyToolkit.HorizontalSlide;
 slider.move(100,0);
-slider.setWidth(450);
+slider.setWidth(200);
 slider.onclick(function(e){
 	console.log(e);
 });
