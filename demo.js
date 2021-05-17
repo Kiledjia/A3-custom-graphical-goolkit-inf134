@@ -6,7 +6,7 @@ import {MyToolkit} from './mytoolkit.js';
 var btn = new MyToolkit.Button;
 btn.move(150,10);
 btn.setText("Button Name");
-// console.log(btn.textContent());
+
 btn.onclick(function(e){
 	console.log(e);
 });
@@ -21,8 +21,8 @@ btn.onmouseup(function(e){
 });
 
 var checkbx = new MyToolkit.CheckBox;
-checkbx.move(150,10);
-checkbx.setText("Checkbox");
+checkbx.move(50,10);
+checkbx.setText("Checkbox Name");
 
 
 checkbx.onclick(function(e){
@@ -41,7 +41,7 @@ checkbx.onmouseup(function(e){
 var groupRadio = [];
 for(var i = 0; i < 4; i++){
 	groupRadio[i] = new MyToolkit.RadioButton(i);
-	groupRadio[i].move(150,5);
+	groupRadio[i].move(300,5);
 	groupRadio[i].setText("Radio " + (i+1))
 	groupRadio[i].removeToggle(false);
 	groupRadio[i].onclick(function(e){
@@ -59,27 +59,27 @@ for(var i = 0; i < 4; i++){
 }
 var txtBox = new MyToolkit.TextBox;
 txtBox.move(50,20)
+
 var scrollBar = new MyToolkit.ScrollBar;
 scrollBar.move(200,0);
 scrollBar.setHeight(250);
 
-// txtBox.move(150,0);
+var progBar = new MyToolkit.ProgressBar;
+progBar.move(50,30);
+progBar.setWidth(350);
+var slider = new MyToolkit.HorizontalSlide;
+slider.move(100,10);
+slider.setWidth(450);
+slider.onclick(function(e){
+	console.log(e);
+});
+slider.onmouseover(function(e){
+	console.log(e);
+});
+slider.onmouseout(function(e){
+	console.log(e);
+});
+slider.onmouseup(function(e){
+	console.log(e);
+});
 
-// var n = 4;
-// for(var i = 0; i < n; i++){
-// 	var radioBtn = new MyToolkit.RadioButton;
-// 	radioBtn.move(150,5);
-// 	radioBtn.setText("Radio " + (i+1));
-// 	radioBtn.onclick(function(e){
-// 		console.log(e);
-// 	});
-// 	radioBtn.onmouseover(function(e){
-// 		console.log(e);
-// 	});
-// 	radioBtn.onmouseout(function(e){
-// 		console.log(e);
-// 	});
-// 	radioBtn.onmouseup(function(e){
-// 		console.log(e);
-// 	});
-// }
