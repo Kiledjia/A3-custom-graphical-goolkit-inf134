@@ -161,7 +161,7 @@ var MyToolkit = (function() {
         
         var text = frame.text("").move(10,0)
         
-        var caret = frame.rect(1,15)
+        var caret = frame.rect(1.5,15)
         
         var runner = caret.animate().width(0);
         runner.loop(1000,1,0);
