@@ -6,7 +6,7 @@ var MyToolkit = (function() {
     var Button = function(){
         var draw = SVG().addTo('body').size('100%','100%').height(80);
         
-        var rect = draw.rect(100,50).fill('#6699cc')
+        var rect = draw.rect(100,50).fill('#FFCCF7')
 
         var label = draw.text('Button')
         .font({size: 16, family: 'Helvetica'});
@@ -17,22 +17,22 @@ var MyToolkit = (function() {
         var mouseupEvent = null
         
         rect.mouseover(function(){
-            this.fill({ color: '#808080'})
+            this.fill({ color: '#FF66E8'})
             if(mouseoverEvent != null)
                 mouseoverEvent(event)
         })
         rect.mouseout(function(){
-            this.fill({ color: '#6699cc'})
+            this.fill({ color: '#FFCCF7'})
             if(mouseoutEvent != null)
             mouseoutEvent(event)
         })
         rect.mouseup(function(){
-            this.fill({ color: '#6699cc'})
+            this.fill({ color: '#FFCCF7'})
             if(mouseupEvent != null)
                 mouseupEvent(event)
         })
         rect.click(function(event){
-            this.fill({ color: 'pink'})
+            this.fill({ color: '#CC00AE'})
             if(clickEvent != null)
                 clickEvent(event)
         })
@@ -62,10 +62,10 @@ var MyToolkit = (function() {
     var CheckBox = function(){
         var draw = SVG().addTo('body').size('100%','100%').height(40);
         
-        var rect = draw.rect(15,15).fill('none').stroke({ width: 2, color: '#808080' })     
+        var rect = draw.rect(15,15).fill('none').stroke({ width: 2, color: '#B20098' })     
 
         var label = draw.text('Check Box Label')
-        .font({size: 16, family: 'Helvetica'});
+        .font({size: 16, family: 'Helvetica'}).fill("#B20098");
 
         var clickEvent = null
         var mouseoverEvent = null
@@ -87,7 +87,7 @@ var MyToolkit = (function() {
                 mouseupEvent(event)
         })
         rect.click(function(event){
-            var text = draw.text('✓')
+            var text = draw.text('✓').fill("#E500C4")
             .font({size: 17, family: 'Helvetica', weight: "bold"})
             .move(rect.x()+1, rect.y()-1.5);
             text.click(function(event){
@@ -123,10 +123,10 @@ var MyToolkit = (function() {
     var RadioButton = function(){
         var draw = SVG().addTo('body').size('100%','100%').height(30);
         
-        var circle  = draw.circle(15).fill('none').stroke({ width: 2, color: '#808080' })     
+        var circle  = draw.circle(15).fill('none').stroke({ width: 2, color: '#B20098' })     
 
         var label = draw.text('Radio Label')
-        .font({size: 16, family: 'Helvetica'});
+        .font({size: 16, family: 'Helvetica'}).fill("#B20098");
 
         var clickEvent = null
         var mouseoverEvent = null
@@ -150,7 +150,7 @@ var MyToolkit = (function() {
         circle.click(function(event){
             // var clicked = false;
             // if(clicked != true){
-                var radio  = draw.circle(10).fill('black').move(circle.x()+2.6, circle.y()+2.3); 
+                var radio  = draw.circle(10).fill('#E500C4').move(circle.x()+2.6, circle.y()+2.3); 
             //     clicked = true;
             // }
             // if(clicked != true){
@@ -192,15 +192,18 @@ var MyToolkit = (function() {
     var TextBox = function(){
         var draw = SVG().addTo('body').size('100%','100%').height(80);
         var frame = draw.group();
-        frame.rect(400,30).stroke("#6699cc").fill("White")
+        frame.rect(400,30).stroke("#FF66E8").fill("White")
 
         var eventNum = [13, 16, 17, 18, 33, 34,35,36, 37, 45, 174, 175, 176, 177, 178]
         
         var text = frame.text("").move(10,0)
         
         var caret = frame.rect(2,15)
+            //    var caret = frame.rect(375,15)
         var runner = caret.animate().width(0);
         runner.loop(1000,1,0);
+        //        runner.loop(1000,1000,1000);
+
         caret.hide()
         var pass = false;
 
@@ -272,18 +275,18 @@ var MyToolkit = (function() {
     var ScrollBar = function(){
         var draw = SVG().addTo('body').size('100%','100%');
         var frame = draw.group();
-        frame.rect(20,300).fill('none').stroke({ width: 2, color: '#808080' })
+        frame.rect(20,300).fill('none').stroke({ width: 1, color: '#B20098' })
         frame.click(function(event){
             console.log("Window")
             console.log(event)
         })
-        var thumb = draw.rect(15, 50).fill('#6699cc')
+        var thumb = draw.rect(15, 50).fill('#FF66E8')
         thumb.radius(10)
         
         var up = draw.text('▲')
-        .font({size: 17, family: 'Helvetica', weight: "bold"}).fill("#6699cc")
+        .font({size: 17, family: 'Helvetica', weight: "bold"}).fill("#FF66E8")
         var down = draw.text('▼')
-        .font({size: 17, family: 'Helvetica', weight: "bold"}).fill("#6699cc")
+        .font({size: 17, family: 'Helvetica', weight: "bold"}).fill("#FF66E8")
 
         var clickEvent = null
         var mouseoverEvent = null
@@ -291,22 +294,22 @@ var MyToolkit = (function() {
         var mouseupEvent = null
 
         thumb.mouseover(function(){
-            this.fill({ color: '#517AA3'})
+            this.fill({ color: '#B20098'})
             if(mouseoverEvent != null)
                 mouseoverEvent(event)
         })
         thumb.mouseout(function(){
-            this.fill({ color: '#6699cc'})
+            this.fill({ color: '#FF66E8'})
             if(mouseoutEvent != null)
             mouseoutEvent(event)
         })
         thumb.mouseup(function(){
-            this.fill({ color: '#6699cc'})
+            this.fill({ color: '#FF66E8'})
             if(mouseupEvent != null)
                 mouseupEvent(event)
         })
         thumb.click(function(event){
-            this.fill({ color: '#334C66'})
+            this.fill({ color: '#B20098'})
             // thumb.move(frame.x()+2.5,150)
                 if(clickEvent != null)
                     clickEvent(event)
@@ -362,7 +365,149 @@ var MyToolkit = (function() {
             }
         }
     }
-return {Button,CheckBox,RadioButton,TextBox,ScrollBar}
+    var ProgressBar = function(){
+        var draw = SVG().addTo('body').size('100%','100%').height(80);
+        var frame = draw.group();
+        frame.rect(400,20).stroke("#B20098").fill("White")
+        
+        // var caret = frame.rect(2,15)
+        var caret = frame.rect(0,5).fill("green")
+        var runner = caret.animate().width(frame.width()-10);
+        runner.loop(1000,20,550);
+        // var runner = caret.animate().width(50);
+
+        // caret.move(caret.x()+40,caret.y())
+        // caret = frame.rect(20,15).fill("green")
+        // runner = caret.animate().width(0);
+        // runner.loop(1000,1,0);
+
+        // while(caret.x()<380){
+        //     var caret = frame.rect(20,15).fill("green")
+ 
+
+        var clickEvent = null
+        var mouseoverEvent = null
+        var mouseoutEvent = null
+        var mouseupEvent = null
+
+        frame.mouseover(function(){
+            // caret.show()
+            if(mouseoverEvent != null)
+                mouseoverEvent(event)
+        })
+        frame.mouseout(function(){
+            // caret.hide()
+            if(mouseoutEvent != null)
+            mouseoutEvent(event)
+        })
+        frame.mouseup(function(){
+            if(mouseupEvent != null)
+                mouseupEvent(event)
+        })
+        frame.click(function(event){
+            if(clickEvent != null)
+                clickEvent(event)
+        })
+        return {
+            move: function(x, y) {
+                frame.move(x, y);
+                caret.move(frame.x()+5,frame.y()+7)
+            },
+            setWidth: function(width){
+                frame.width(width);
+                // caret.width(width);
+            },
+            onclick: function(eventHandler){
+                clickEvent = eventHandler
+            },
+            onmouseout: function(eventHandler){
+                mouseoverEvent = eventHandler
+            },
+            onmouseup: function(eventHandler){
+                mouseoutEvent = eventHandler
+            },
+            onmouseover: function(eventHandler){
+                mouseupEvent = eventHandler
+            }
+        }
+    }
+    var HorizontalSlide = function(){
+        var draw = SVG().addTo('body').size('100%','100%');
+        var frame = draw.group();
+        frame.rect(500,25).fill('none').stroke({ width: 1, color: '#B20098' })
+        frame.click(function(event){
+            console.log("Window")
+            console.log(event)
+        })
+        var thumb = draw.rect(50, 20).fill('#FF66E8')
+        thumb.radius(10)
+        var label = draw.text(' > >').fill("#B20098")
+        .font({size: 16, family: 'Helvetica'});
+
+        // var up = draw.text('▲')
+        // .font({size: 17, family: 'Helvetica', weight: "bold"}).fill("#FF66E8")
+        // var down = draw.text('▼')
+        // .font({size: 17, family: 'Helvetica', weight: "bold"}).fill("#FF66E8")
+
+        var clickEvent = null
+        var mouseoverEvent = null
+        var mouseoutEvent = null
+        var mouseupEvent = null
+        thumb.mouseover(function(){
+            this.fill({ color: '#B20098'})
+            if(thumb.x()>frame.width()){
+                thumb.fill("#5fac5a")
+            }
+            if(mouseoverEvent != null)
+                mouseoverEvent(event)
+        })
+        thumb.mouseout(function(){
+            this.fill({ color: '#FF66E8'})
+            if(thumb.x()>frame.width()){
+                thumb.fill("#5fac5a")
+            }
+            if(mouseoutEvent != null)
+            mouseoutEvent(event)
+        })
+        thumb.mouseup(function(){
+            this.fill({ color: '#00a861'})
+            if(thumb.x()>frame.width()){
+                thumb.fill("#5fac5a")
+            }
+            if(mouseupEvent != null)
+                mouseupEvent(event)
+        })
+        thumb.click(function(){
+            label.hide();
+            thumb.animate(1000, 0, 'now').attr({ fill: '#5fac5a' })
+            .move(frame.width()+40,thumb.y())
+            if(clickEvent != null)
+                clickEvent(event)
+        })
+        return {
+            move: function(x, y) {
+                frame.move(x, y);
+                thumb.move(frame.x()+2.5,frame.y()+2)
+                label.move(frame.x()+55,frame.y()+2)
+            },
+            setWidth: function(width){
+                frame.width(width)
+            },
+            onclick: function(eventHandler){
+                clickEvent = eventHandler
+            },
+            onmouseout: function(eventHandler){
+                mouseoverEvent = eventHandler
+            },
+            onmouseup: function(eventHandler){
+                mouseoutEvent = eventHandler
+            },
+            onmouseover: function(eventHandler){
+                mouseupEvent = eventHandler
+            }
+        }
+    }
+return {Button,CheckBox,RadioButton,TextBox,ScrollBar,ProgressBar,HorizontalSlide}
 }());
 
 export{MyToolkit}
