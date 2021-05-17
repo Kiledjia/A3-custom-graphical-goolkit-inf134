@@ -242,7 +242,7 @@ var MyToolkit = (function() {
             console.log("Window")
             console.log(event)
         })
-        var thumb = draw.rect(15, 50).fill('#FF66E8')
+        var thumb = draw.rect(17, 50).fill('#FF66E8')
         thumb.radius(10)
         
         var up = draw.text('▲')
@@ -281,7 +281,7 @@ var MyToolkit = (function() {
                     console.log("scroll thumb has moved up")
         })
         down.click(function(event){
-            if(thumb.y()<frame.height()-80){
+            if(thumb.y()<frame.height()-78){
                 thumb.move(thumb.x(),thumb.y()+10)
             }
                 if(clickEvent != null)
@@ -290,7 +290,7 @@ var MyToolkit = (function() {
         })
         thumb.mousedown(function(){
             SVG.on(thumb,'mousemove',(event)=>{
-                if(thumb.y()<frame.height()-80){
+                if(thumb.y()<frame.height()-78){
                     thumb.move(thumb.x(),event.offsetY)
                     console.log(event)
                     console.log(event.offsetY)                
@@ -300,7 +300,7 @@ var MyToolkit = (function() {
         return {
             move: function(x, y) {
                 frame.move(x, y);
-                thumb.move(frame.x()+2.5,frame.y()+25)
+                thumb.move(frame.x()+1.5,frame.y()+22)
                 up.move(frame.x()+1.5, frame.y()+1.5);
             },
             setHeight: function(height){
@@ -326,11 +326,11 @@ var MyToolkit = (function() {
     var ProgressBar = function(){
         var draw = SVG().addTo('body').size('100%','100%').height(80);
         var frame = draw.group();
-        frame.rect(400,20).stroke("#B20098").fill("White")
+        frame.rect(400,10).stroke("#B20098").fill("White")
         
         // var caret = frame.rect(2,15)
-        var caret = frame.rect(0,5).fill("green")
-        var runner = caret.animate().width(frame.width()-10);
+        var caret = frame.rect(0,10).fill("#5fac5a")
+        var runner = caret.animate().width(frame.width());
         runner.loop(1000,20,550);
         // var runner = caret.animate().width(50);
 
@@ -369,7 +369,7 @@ var MyToolkit = (function() {
         return {
             move: function(x, y) {
                 frame.move(x, y);
-                caret.move(frame.x()+5,frame.y()+7)
+                caret.move(frame.x(),frame.y())
             },
             setWidth: function(width){
                 frame.width(width);
@@ -392,60 +392,54 @@ var MyToolkit = (function() {
     var HorizontalSlide = function(){
         var draw = SVG().addTo('body').size('100%','100%');
         var frame = draw.group();
-        frame.rect(500,25).fill('none').stroke({ width: 1, color: '#B20098' })
+        frame.rect(500,20).fill('none').stroke({ width: 1, color: '#B20098' })
         frame.click(function(event){
             console.log("Window")
             console.log(event)
         })
-        var thumb = draw.rect(50, 20).fill('#FF66E8')
-        thumb.radius(10)
+        var slider = draw.rect(50, 20).fill('#FF66E8')
         var label = draw.text(' > >').fill("#B20098")
         .font({size: 16, family: 'Helvetica'});
-
-        // var up = draw.text('▲')
-        // .font({size: 17, family: 'Helvetica', weight: "bold"}).fill("#FF66E8")
-        // var down = draw.text('▼')
-        // .font({size: 17, family: 'Helvetica', weight: "bold"}).fill("#FF66E8")
 
         var clickEvent = null
         var mouseoverEvent = null
         var mouseoutEvent = null
         var mouseupEvent = null
-        thumb.mouseover(function(){
+        slider.mouseover(function(){
             this.fill({ color: '#B20098'})
-            if(thumb.x()>frame.width()){
-                thumb.fill("#5fac5a")
+            if(slider.x()>frame.width()){
+                slider.fill("#5fac5a")
             }
             if(mouseoverEvent != null)
                 mouseoverEvent(event)
         })
-        thumb.mouseout(function(){
+        slider.mouseout(function(){
             this.fill({ color: '#FF66E8'})
-            if(thumb.x()>frame.width()){
-                thumb.fill("#5fac5a")
+            if(slider.x()>frame.width()){
+                slider.fill("#5fac5a")
             }
             if(mouseoutEvent != null)
             mouseoutEvent(event)
         })
-        thumb.mouseup(function(){
+        slider.mouseup(function(){
             this.fill({ color: '#00a861'})
-            if(thumb.x()>frame.width()){
-                thumb.fill("#5fac5a")
+            if(slider.x()>frame.width()){
+                slider.fill("#5fac5a")
             }
             if(mouseupEvent != null)
                 mouseupEvent(event)
         })
-        thumb.click(function(){
+        slider.click(function(){
             label.hide();
-            thumb.animate(1000, 0, 'now').attr({ fill: '#5fac5a' })
-            .move(frame.width()+40,thumb.y())
+            slider.animate(1000, 0, 'now').attr({ fill: '#5fac5a' })
+            .move(frame.width()+50,slider.y())
             if(clickEvent != null)
                 clickEvent(event)
         })
         return {
             move: function(x, y) {
                 frame.move(x, y);
-                thumb.move(frame.x()+2.5,frame.y()+2)
+                slider.move(frame.x()+1,frame.y())
                 label.move(frame.x()+55,frame.y()+2)
             },
             setWidth: function(width){
