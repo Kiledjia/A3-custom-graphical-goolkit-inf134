@@ -38,25 +38,14 @@ checkbx.onmouseup(function(e){
 	console.log(e);
 });
 
-var groupRadio = [];
-for(var i = 0; i < 4; i++){
-	groupRadio[i] = new MyToolkit.RadioButton(i);
-	groupRadio[i].move(300,5);
-	groupRadio[i].setText("Radio " + (i+1))
-	groupRadio[i].removeToggle(false);
-	groupRadio[i].onclick(function(e){
-		console.log(e);
-	});
-	groupRadio[i].onmouseover(function(e){
-		console.log(e);
-	});
-	groupRadio[i].onmouseout(function(e){
-		console.log(e);
-	});
-	groupRadio[i].onmouseup(function(e){
-		console.log(e);
-	});
-}
+var radioBtns = []
+radioBtns.push(["Radio 1", false])
+radioBtns.push(["Radio 2", true])
+radioBtns.push(["Radio 3", false])
+radioBtns.push(["Radio 4", false])
+let btnGroup = new MyToolkit.RadioButton(radioBtns);
+btnGroup.move(250,10);
+
 var txtBox = new MyToolkit.TextBox;
 txtBox.move(50,20)
 
