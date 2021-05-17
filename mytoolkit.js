@@ -192,28 +192,40 @@ var MyToolkit = (function() {
     var TextBox = function(){
         var draw = SVG().addTo('body').size('100%','100%').height(80);
         var frame = draw.group();
-        frame.rect(400,50).stroke("#6699cc").fill("White")
-        frame.click(function(event){
-            console.log("Window")
-            console.log(event)
-        })
+        frame.rect(400,30).stroke("#6699cc").fill("White")
 
-        var text = frame.text("").move(20,10)
+        var eventNum = [13, 16, 17, 18, 33, 34,35,36, 37, 45, 174, 175, 176, 177, 178]
         
-        var caret = frame.rect(2,15).move(20,20)
+        var text = frame.text("").move(10,0)
+        
+        var caret = frame.rect(2,15)
         var runner = caret.animate().width(0);
         runner.loop(1000,1,0);
+        caret.hide()
+        var pass = false;
 
         SVG.on(window,'keyup',(event)=>{
-            if(text.length()<365){
-                text.text(text.text()+event.key)
-                caret.x(text.length()+30) 
+            console.log(event.keyCode);
+            if(eventNum.includes(event.keyCode)){
+                pass = true;
+                console.log("Pass");
+            }
+            else if (event.keyCode == 8){
+                console.log(text.text());
+                text.text(text.text().substring(0, text.text().length-1));
+                caret.move((frame.x()+16+text.length())-5,caret.y());
                 console.log("Text Has Change")
-            console.log(event)
+                console.log(event)
+            }
+            else if(text.length()<375 && pass == false){
+                text.text(text.text()+event.key)
+                caret.x(text.length()+(frame.x()+10)) 
+                console.log("Text Has Change")
+                console.log(event)
             }  
+            pass = false;
         })
         frame.move(10,10)
-
 
         var clickEvent = null
         var mouseoverEvent = null
@@ -221,12 +233,12 @@ var MyToolkit = (function() {
         var mouseupEvent = null
 
         frame.mouseover(function(){
-            this.fill({ color: 'black'})
+            caret.show()
             if(mouseoverEvent != null)
                 mouseoverEvent(event)
         })
         frame.mouseout(function(){
-            this.fill({ color: 'black'})
+            caret.hide()
             if(mouseoutEvent != null)
             mouseoutEvent(event)
         })
@@ -235,36 +247,17 @@ var MyToolkit = (function() {
                 mouseupEvent(event)
         })
         frame.click(function(event){
-            // var clicked = false;
-            // if(clicked != true){
-                // var radio  = draw.circle(10).fill('black').move(circle.x()+2.6, circle.y()+2.3); 
-            //     clicked = true;
-            // }
-            // if(clicked != true){
-            // radio.click(function(event){
-            //     radio.remove();
-            //     if(clickEvent != null)
-            //     clickEvent(event)
-            // })
-                if(clickEvent != null)
-                    clickEvent(event)
+            if(clickEvent != null)
+                clickEvent(event)
         })
         return {
             move: function(x, y) {
-                // circle.move(x, y);
-                // label.move(x+20,y-1)
-            },
-            setText: function(text){
-                // label.text(text);
+                frame.move(x, y);
+                caret.move(frame.x()+10,frame.y()+7)
             },
             onclick: function(eventHandler){
                 clickEvent = eventHandler
             },
-            // removeToggle: function(boolean){
-            //     if(boolean == true){
-            //         circle.remove();
-            //     }
-            // },
             onmouseout: function(eventHandler){
                 mouseoverEvent = eventHandler
             },
@@ -291,9 +284,6 @@ var MyToolkit = (function() {
         .font({size: 17, family: 'Helvetica', weight: "bold"}).fill("#6699cc")
         var down = draw.text('▼')
         .font({size: 17, family: 'Helvetica', weight: "bold"}).fill("#6699cc")
-        
-        
-
 
         var clickEvent = null
         var mouseoverEvent = null
