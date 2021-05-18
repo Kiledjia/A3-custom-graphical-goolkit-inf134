@@ -127,7 +127,6 @@ var MyToolkit = (function() {
         var btns = new Array();
         for (var i = 0; i < radioButtons.length; i++){
             y+=40
-            // console.log(r[i][0]);
             var circle = draw.circle(15).fill('white').stroke({ color:"#B20098", width: 2}).move(0, y+1);
             var txt = draw.text(radioButtons[i][0]).move(25,y).font({size: 16, family: 'Helvetica'}).fill("#B20098");
             if (radioButtons[i][1] == true){
@@ -139,16 +138,26 @@ var MyToolkit = (function() {
             frame.add(txt);
             frame.add(toggle);
         }
-        circle.click(function(event){
-            console.log(circle.attr());
-        });
+        // circle.click(function(event){
+        //     console.log(circle.attr());
+        // });
+        var clickEvent = null
         btns.map(e => e.node.addEventListener("click", function(){ 
             toggle.show();
             toggle.move(e.x()+2, e.y()+2);
         }));
+
+        frame.click(function(event){
+            if(clickEvent != null)
+                console.log("Checked State Changed")
+                clickEvent(event)
+        })
         return{
             move: function(x, y) {
                 frame.move(x, y);
+            },
+            onclick: function(eventHandler){
+                clickEvent = eventHandler
             }
         }
     }
@@ -268,7 +277,6 @@ var MyToolkit = (function() {
                 mouseupEvent(event)
         })
         thumb.click(function(event){
-            // thumb.move(frame.x()+2.5,150)
                 if(clickEvent != null)
                     clickEvent(event)
         })
@@ -323,69 +331,32 @@ var MyToolkit = (function() {
             }
         }
     }
+    
     var ProgressBar = function(){
         var draw = SVG().addTo('body').size('100%','100%').height(80);
         var frame = draw.group();
         frame.rect(400,10).stroke("#B20098").fill("White")
-        // let increment=150;
-        // var caret;
-
-        var caret = frame.rect(0,10).fill("#5fac5a")
-
-        // var runner = caret.animate().width(50);
-
-        // caret.move(caret.x()+40,caret.y())
-        // caret = frame.rect(20,15).fill("green")
-        // runner = caret.animate().width(0);
-        // runner.loop(1000,1,0);
-
-        // while(caret.x()<380){
-        //     var caret = frame.rect(20,15).fill("green")
+        var progressbar = draw.rect(0,10).fill("green")
         
 
-        var clickEvent = null
-        var mouseoverEvent = null
-        var mouseoutEvent = null
-        var mouseupEvent = null
-
-        return {
-            move: function(x, y) {
-                frame.move(x, y);
-                caret.move(frame.x(),frame.y())
+        return{
+            move: function(x,y){
+                frame.move(x,y)
+                progressbar.move(x,y)
             },
             setWidth: function(width){
-                // console.log(width)
-                frame.width(width);
-                // draw.width(width)
-                // caret.width(width);
+                frame.width(width)
             },
-            incrementTo: function(value){
-                // var runner = caret.animate().width(frame.width());
-                // runner.loop(1000,20,550);
-                value = (value/100)*frame.width()+25
-                var increment = value
-                // var increment = value/100*frame.width();
-                console.log(increment)
-
-                // increment = (increment/100)*frame.width();
-                // console.log(increment)
-
-                // increment = increment*frame.width();
-                // console.log(increment)
-
-                for(let i=increment; i<=value;i++){
-                    var runner = caret.animate(1000).width(i);
-                    runner.loop(400,200,800);
-                    i+=1
-                    increment+=1
-                    console.log(i)
-                }
-                // console.log(value)
-
-                // caret.move(frame.x(),frame.y())
+            getWidth: function(){
+                frame.width()
+            },
+            setProgress: function(progress){
+                progressbar.animate(3000).width((progress/100)*frame.width()).loop()
+                
             }
         }
     }
+
     var HorizontalSlide = function(){
         var draw = SVG().addTo('body').size('100%','100%');
         var frame = draw.group();
@@ -395,7 +366,7 @@ var MyToolkit = (function() {
             console.log(event)
         })
         var slider = draw.rect(50, 20).fill('#FF66E8')
-        var label = draw.text(' > >').fill("#B20098")
+        var label = draw.text(' Click > >').fill("#B20098")
         .font({size: 16, family: 'Helvetica'});
 
         var clickEvent = null
@@ -430,6 +401,7 @@ var MyToolkit = (function() {
             label.hide();
             slider.animate(1000, 0, 'now').attr({ fill: '#5fac5a' })
             .move(frame.width()+50,slider.y())
+            console.log("Slide Completed")
             if(clickEvent != null)
                 clickEvent(event)
         })
