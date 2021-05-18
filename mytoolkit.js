@@ -327,11 +327,11 @@ var MyToolkit = (function() {
         var draw = SVG().addTo('body').size('100%','100%').height(80);
         var frame = draw.group();
         frame.rect(400,10).stroke("#B20098").fill("White")
-        
-        // var caret = frame.rect(2,15)
+        // let increment=150;
+        // var caret;
+
         var caret = frame.rect(0,10).fill("#5fac5a")
-        var runner = caret.animate().width(frame.width());
-        runner.loop(1000,20,550);
+
         // var runner = caret.animate().width(50);
 
         // caret.move(caret.x()+40,caret.y())
@@ -341,51 +341,48 @@ var MyToolkit = (function() {
 
         // while(caret.x()<380){
         //     var caret = frame.rect(20,15).fill("green")
- 
+        
 
         var clickEvent = null
         var mouseoverEvent = null
         var mouseoutEvent = null
         var mouseupEvent = null
 
-        frame.mouseover(function(){
-            // caret.show()
-            if(mouseoverEvent != null)
-                mouseoverEvent(event)
-        })
-        frame.mouseout(function(){
-            // caret.hide()
-            if(mouseoutEvent != null)
-            mouseoutEvent(event)
-        })
-        frame.mouseup(function(){
-            if(mouseupEvent != null)
-                mouseupEvent(event)
-        })
-        frame.click(function(event){
-            if(clickEvent != null)
-                clickEvent(event)
-        })
         return {
             move: function(x, y) {
                 frame.move(x, y);
                 caret.move(frame.x(),frame.y())
             },
             setWidth: function(width){
+                // console.log(width)
                 frame.width(width);
+                // draw.width(width)
                 // caret.width(width);
             },
-            onclick: function(eventHandler){
-                clickEvent = eventHandler
-            },
-            onmouseout: function(eventHandler){
-                mouseoverEvent = eventHandler
-            },
-            onmouseup: function(eventHandler){
-                mouseoutEvent = eventHandler
-            },
-            onmouseover: function(eventHandler){
-                mouseupEvent = eventHandler
+            incrementTo: function(value){
+                // var runner = caret.animate().width(frame.width());
+                // runner.loop(1000,20,550);
+                value = (value/100)*frame.width()+25
+                var increment = value
+                // var increment = value/100*frame.width();
+                console.log(increment)
+
+                // increment = (increment/100)*frame.width();
+                // console.log(increment)
+
+                // increment = increment*frame.width();
+                // console.log(increment)
+
+                for(let i=increment; i<=value;i++){
+                    var runner = caret.animate(1000).width(i);
+                    runner.loop(400,200,800);
+                    i+=1
+                    increment+=1
+                    console.log(i)
+                }
+                // console.log(value)
+
+                // caret.move(frame.x(),frame.y())
             }
         }
     }
