@@ -281,7 +281,7 @@ var MyToolkit = (function() {
         var frame = draw.group();
         frame.rect(400,30).stroke("#B20098").fill("White")
 
-        var eventNum = [13, 16, 17, 18, 33, 34,35,36, 37, 45, 174, 175, 176, 177, 178]
+        var eventNum = [13, 16, 17, 18, 27, 33, 34, 35, 36, 37, 44, 45, 46, 91, 121, 122, 123, 174, 175, 176, 177, 178]
         
         var text = frame.text("").move(10,0)
         
