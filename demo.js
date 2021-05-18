@@ -28,9 +28,6 @@ checkbx.setText("Checkbox Name");
 checkbx.onclick(function(e){
 	console.log(e);
 });
-checkbx.onmouseover(function(e){
-	console.log(e);
-});
 checkbx.onmouseout(function(e){
 	console.log(e);
 });
@@ -46,6 +43,10 @@ radioBtns.push(["Radio 4", false])
 let btnGroup = new MyToolkit.RadioButton(radioBtns);
 btnGroup.move(250,10);
 
+btnGroup.onclick(function(e){
+	console.log(e);
+});
+
 var txtBox = new MyToolkit.TextBox;
 txtBox.move(50,20)
 
@@ -54,9 +55,9 @@ scrollBar.move(200,0);
 scrollBar.setHeight(250);
 
 var progBar = new MyToolkit.ProgressBar;
-progBar.move(50,30);
-progBar.setWidth(350);
-progBar.incrementTo(75);
+progBar.move(65,30);
+progBar.setWidth(320);
+progBar.setProgress(75);
 
 var slider = new MyToolkit.HorizontalSlide;
 slider.move(100,0);
