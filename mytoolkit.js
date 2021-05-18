@@ -1,8 +1,20 @@
 // File name: mytoolkit.js
 
 import {SVG} from './svg.min.js';
-
 var MyToolkit = (function() {
+    /**
+     *
+     *
+     * @return {move} Move
+     * @return {setText} Text Setter
+     * @return {onclick} On Click
+     * @return {onmouseup} On Mouse Up
+     * @return {onmouseover} On Mouse Over
+    /**
+     *
+     *
+     * @return {*} 
+     */
     var Button = function(){
         var draw = SVG().addTo('body').size('100%','100%').height(80);
         
@@ -15,6 +27,7 @@ var MyToolkit = (function() {
         var mouseoverEvent = null
         var mouseoutEvent = null
         var mouseupEvent = null
+        
         
         rect.mouseover(function(){
             this.fill({ color: '#FF66E8'})
@@ -37,10 +50,18 @@ var MyToolkit = (function() {
                 clickEvent(event)
         })
         return {
+            /**
+             * 
+             * @function
+             * @name move
+             * @param {number} x - The X coordinate
+             * @param {number} y - The Y coordinate
+             */
             move: function(x, y) {
                 rect.move(x, y);
                 label.move(x+20,y+15);
             },
+            
             setText: function(text){
                 label.text(text);
                 rect.size(40+label.length(),50)
@@ -349,7 +370,6 @@ var MyToolkit = (function() {
             },
             setIncrement: function(value){
                 bar.animate(5000).width((value/100)*frame.width()).loop()
-                // console.log("Pregress complete")
             }
         }
     }
@@ -370,6 +390,7 @@ var MyToolkit = (function() {
         var mouseoverEvent = null
         var mouseoutEvent = null
         var mouseupEvent = null
+        
         slider.mouseover(function(){
             this.fill({ color: '#B20098'})
             if(slider.x()>frame.width()){
