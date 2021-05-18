@@ -363,8 +363,8 @@ var MyToolkit = (function() {
             console.log(event)
         })
         var slider = draw.rect(50, 20).fill('#FF66E8')
-        var label = draw.text(' Click > >').fill("#B20098")
-        .font({size: 16, family: 'Helvetica'});
+        var label = draw.text(' Click >>').fill("#B20098")
+        .font({size: 14, family: 'Helvetica'});
 
         var clickEvent = null
         var mouseoverEvent = null
@@ -396,9 +396,17 @@ var MyToolkit = (function() {
         })
         slider.click(function(){
             label.hide();
-            slider.animate(1000, 0, 'now').attr({ fill: '#5fac5a' })
-            .move(frame.width()+50,slider.y())
-            console.log("Slide Completed")
+            if(slider.x()<frame.width()+50){
+                slider.animate(1000, 0, 'now').attr({ fill: '#5fac5a' })
+                .move(frame.width()+50,slider.y())
+                console.log("Slide Completed")
+            }
+            else if(slider.x()>=frame.x()){
+                slider.animate(1000, 0, 'now').attr({ fill: '#FF66E8' })
+                .move(frame.x(),slider.y())
+                label.show();
+                console.log("Slide undone")
+            }
             if(clickEvent != null)
                 clickEvent(event)
         })
@@ -409,7 +417,14 @@ var MyToolkit = (function() {
                 label.move(frame.x()+55,frame.y()+2)
             },
             setWidth: function(width){
-                frame.width(width)
+                if(width>107){
+                    frame.width(width)
+                }
+                else if(width<=107){
+                    frame.width(width)
+                    label.remove()
+                }
+                
             },
             onclick: function(eventHandler){
                 clickEvent = eventHandler
