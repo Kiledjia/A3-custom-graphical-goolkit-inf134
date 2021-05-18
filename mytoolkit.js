@@ -334,13 +334,13 @@ var MyToolkit = (function() {
         var draw = SVG().addTo('body').size('100%','100%').height(80);
         var frame = draw.group();
         frame.rect(400,10).stroke("#B20098").fill("White")
-        var progressbar = draw.rect(0,10).fill("green")
+        var bar = draw.rect(0,10).fill("green")
         
 
         return{
             move: function(x,y){
                 frame.move(x,y)
-                progressbar.move(x,y)
+                bar.move(x,y)
             },
             setWidth: function(width){
                 frame.width(width)
@@ -349,8 +349,7 @@ var MyToolkit = (function() {
                 frame.width()
             },
             setProgress: function(progress){
-                progressbar.animate(3000).width((progress/100)*frame.width()).loop()
-                
+                bar.animate(5000).width((progress/100)*frame.width()).loop()     
             }
         }
     }
