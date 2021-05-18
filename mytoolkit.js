@@ -10,10 +10,6 @@ var MyToolkit = (function() {
      * @return {onclick} On Click
      * @return {onmouseup} On Mouse Up
      * @return {onmouseover} On Mouse Over
-    /**
-     *
-     *
-     * @return {*} 
      */
     var Button = function(){
         var draw = SVG().addTo('body').size('100%','100%').height(80);
@@ -61,25 +57,62 @@ var MyToolkit = (function() {
                 rect.move(x, y);
                 label.move(x+20,y+15);
             },
-            
+            /**
+             * 
+             * @function
+             * @name setText
+             * @param {string} text - Text For Custom Label
+             */
             setText: function(text){
                 label.text(text);
                 rect.size(40+label.length(),50)
             },
+            /**
+             * 
+             * @function
+             * @name onclick
+             * @param {event} eventHandler - Log Event on Click
+             */
             onclick: function(eventHandler){
                 clickEvent = eventHandler
             },
+            /**
+             * 
+             * @function
+             * @name onmouseout
+             * @param {event} eventHandler - Log Event on Mouse Out
+             */
             onmouseout: function(eventHandler){
                 mouseoverEvent = eventHandler
             },
+            /**
+             * 
+             * @function
+             * @name onmouseup
+             * @param {event} eventHandler - Log Event on Mouse Up
+             */
             onmouseup: function(eventHandler){
                 mouseoutEvent = eventHandler
             },
+            /**
+             * 
+             * @function
+             * @name onmouseover
+             * @param {event} eventHandler - Log Event on Mouse Over
+             */
             onmouseover: function(eventHandler){
                 mouseupEvent = eventHandler
             }
         }
     }
+    /**
+     *
+     * @return {move} Move CheckBox with Label
+     * @return {setText} Text Setter
+     * @return {onclick} On Click
+     * @return {onmouseup} On Mouse Up
+     * @return {onmouseover} On Mouse Over
+     */
     var CheckBox = function(){
         var draw = SVG().addTo('body').size('100%','100%').height(40);
         
@@ -119,28 +152,72 @@ var MyToolkit = (function() {
             if(clickEvent != null)
                 clickEvent(event)
         })
+        
         return {
+            /**
+             * 
+             * @function
+             * @name move
+             * @param {number} x - The X coordinate
+             * @param {number} y - The Y coordinate
+             */
             move: function(x, y) {
                 rect.move(x, y);
                 label.move(x+20,y-1)
             },
+            /**
+             * 
+             * @function
+             * @name setText
+             * @param {string} text - Text For Custom Label
+             */
             setText: function(text){
                 label.text(text);
             },
+            /**
+             * 
+             * @function
+             * @name onclick
+             * @param {event} eventHandler - Log Event on Click
+             */
             onclick: function(eventHandler){
                 clickEvent = eventHandler
             },
-            onmouseout: function(eventHandler){
+            /**
+             * 
+             * @function
+             * @name onmouseout
+             * @param {event} eventHandler - Log Event on Mouse Out
+             */
+             onmouseout: function(eventHandler){
                 mouseoverEvent = eventHandler
             },
+            /**
+             * 
+             * @function
+             * @name onmouseup
+             * @param {event} eventHandler - Log Event on Mouse Up
+             */
             onmouseup: function(eventHandler){
                 mouseoutEvent = eventHandler
             },
+            /**
+             * 
+             * @function
+             * @name onmouseover
+             * @param {event} eventHandler - Log Event on Mouse Over
+             */
             onmouseover: function(eventHandler){
                 mouseupEvent = eventHandler
             }
         }
     }
+    /**
+     *
+     * @param {RadioButton} radioButtons
+     * @return {move} Move
+     * @return {onclick} Click Event
+     */
     var RadioButton = function(radioButtons){
         var draw = SVG().addTo('body').size('100%','100%').height(radioButtons.length*40);
         var frame = draw.group()
@@ -171,15 +248,34 @@ var MyToolkit = (function() {
                 console.log("Checked State Changed")
                 clickEvent(event)
         })
+        
         return{
+            /**
+             * 
+             * @function
+             * @name move
+             * @param {number} x - The X coordinate
+             * @param {number} y - The Y coordinate
+             */
             move: function(x, y) {
                 frame.move(x, y);
             },
+            /**
+             * 
+             * @function
+             * @name onclick
+             * @param {event} eventHandler - Log Event on Click
+             */
             onclick: function(eventHandler){
                 clickEvent = eventHandler
             }
         }
     }
+    /**
+     *
+     * @return {move} Move CheckBox with Label
+     * @return {onmouseover} On Mouse Over
+     */
     var TextBox = function(){
         var draw = SVG().addTo('body').size('100%','100%').height(80);
         var frame = draw.group();
@@ -224,44 +320,44 @@ var MyToolkit = (function() {
         var mouseoverEvent = null
         var mouseoutEvent = null
         var mouseupEvent = null
-
+        
         frame.mouseover(function(){
             caret.show()
             if(mouseoverEvent != null)
                 mouseoverEvent(event)
         })
-        frame.mouseout(function(){
-            caret.hide()
-            if(mouseoutEvent != null)
-            mouseoutEvent(event)
-        })
-        frame.mouseup(function(){
-            if(mouseupEvent != null)
-                mouseupEvent(event)
-        })
-        frame.click(function(event){
-            if(clickEvent != null)
-                clickEvent(event)
-        })
         return {
+            /**
+             * 
+             * @function
+             * @name move
+             * @param {number} x - The X coordinate
+             * @param {number} y - The Y coordinate
+             */
             move: function(x, y) {
                 frame.move(x, y);
                 caret.move(frame.x()+10,frame.y()+7)
             },
-            onclick: function(eventHandler){
-                clickEvent = eventHandler
-            },
-            onmouseout: function(eventHandler){
-                mouseoverEvent = eventHandler
-            },
-            onmouseup: function(eventHandler){
-                mouseoutEvent = eventHandler
-            },
+            /**
+             * 
+             * @function
+             * @name onmouseover
+             * @param {event} eventHandler - Log Event on Mouse Over
+             */
             onmouseover: function(eventHandler){
                 mouseupEvent = eventHandler
             }
         }
     }
+    /**
+     *
+     * @return {move} Move CheckBox with Label
+     * @return {setHeight} Set the Height of The Scroll Bar
+     * @return {onclick} On Click
+     * @return {onmouseout} On Mouse Up
+     * @return {onmouseup} On Mouse Up
+     * @return {onmouseover} On Mouse Over
+     */
     var ScrollBar = function(){
         var draw = SVG().addTo('body').size('100%','100%');
         var frame = draw.group();
@@ -325,32 +421,75 @@ var MyToolkit = (function() {
             })
         })
         return {
+            /**
+             * 
+             * @function
+             * @name move
+             * @param {number} x - The X coordinate
+             * @param {number} y - The Y coordinate
+             */
             move: function(x, y) {
                 frame.move(x, y);
                 thumb.move(frame.x()+1.5,frame.y()+22)
                 up.move(frame.x()+1.5, frame.y()+1.5);
             },
+            /**
+             * 
+             * @function
+             * @name setHeight
+             * @param {number} height - The Height
+             */
             setHeight: function(height){
                 frame.height(height)
                 draw.height(height);
                 up.move(frame.x()+1.5, frame.y()+1.5);
                 down.move(frame.x()+1.5, frame.height()-20)
             },
+            /**
+             * 
+             * @function
+             * @name onclick
+             * @param {event} eventHandler - Log Event on Click
+             */
             onclick: function(eventHandler){
                 clickEvent = eventHandler
             },
-            onmouseout: function(eventHandler){
+            /**
+             * 
+             * @function
+             * @name onmouseout
+             * @param {event} eventHandler - Log Event on Mouse Out
+             */
+             onmouseout: function(eventHandler){
                 mouseoverEvent = eventHandler
             },
+            /**
+             * 
+             * @function
+             * @name onmouseup
+             * @param {event} eventHandler - Log Event on Mouse Up
+             */
             onmouseup: function(eventHandler){
                 mouseoutEvent = eventHandler
             },
+            /**
+             * 
+             * @function
+             * @name onmouseover
+             * @param {event} eventHandler - Log Event on Mouse Over
+             */
             onmouseover: function(eventHandler){
                 mouseupEvent = eventHandler
             }
         }
     }
-    
+    /**
+     *
+     * @return {move} Move CheckBox with Label
+     * @return {setWidth} Set the Width of The Progress Bar
+     * @return {getWidth} Get the Width of The Progress Bar
+     * @return {setIncrement} Increment Value of Progress Bar
+     */
     var ProgressBar = function(){
         var draw = SVG().addTo('body').size('100%','100%').height(80);
         var frame = draw.group();
@@ -358,22 +497,55 @@ var MyToolkit = (function() {
         var bar = draw.rect(0,10).fill("#5fac5a")
         
         return{
+            /**
+             * 
+             * @function
+             * @name move
+             * @param {number} x - The X coordinate
+             * @param {number} y - The Y coordinate
+             */
             move: function(x,y){
                 frame.move(x,y)
                 bar.move(x,y)
             },
+            /**
+             * 
+             * @function
+             * @name setWidth
+             * @param {number} width - The Width
+             */
             setWidth: function(width){
                 frame.width(width)
             },
+            /**
+             * 
+             * @function
+             * @name getWidth
+             */
             getWidth: function(){
                 frame.width()
             },
+            /**
+             * 
+             * @function
+             * @name setIncrement
+             * @param {number} value - Value of Increment Amount
+             */
             setIncrement: function(value){
                 bar.animate(5000).width((value/100)*frame.width()).loop()
             }
         }
     }
 
+    /**
+     *
+     * @return {move} Move CheckBox with Label
+     * @return {setWidth} Set the Width of The Progress Bar
+     * @return {onclick} On Click
+     * @return {onmouseout} On Mouse Up
+     * @return {onmouseup} On Mouse Up
+     * @return {onmouseover} On Mouse Over
+     */
     var HorizontalSlide = function(){
         var draw = SVG().addTo('body').size('100%','100%');
         var frame = draw.group();
@@ -432,11 +604,24 @@ var MyToolkit = (function() {
                 clickEvent(event)
         })
         return {
+            /**
+             * 
+             * @function
+             * @name move
+             * @param {number} x - The X coordinate
+             * @param {number} y - The Y coordinate
+             */
             move: function(x, y) {
                 frame.move(x, y);
                 slider.move(frame.x(),frame.y())
                 label.move(frame.x()+55,frame.y()+2)
             },
+            /**
+             * 
+             * @function
+             * @name setWidth
+             * @param {number} width - The Width
+             */
             setWidth: function(width){
                 if(width>107){
                     frame.width(width)
@@ -447,15 +632,39 @@ var MyToolkit = (function() {
                 }
                 
             },
-            onclick: function(eventHandler){
+            /**
+             * 
+             * @function
+             * @name onclick
+             * @param {event} eventHandler - Log Event on Click
+             */
+             onclick: function(eventHandler){
                 clickEvent = eventHandler
             },
-            onmouseout: function(eventHandler){
+            /**
+             * 
+             * @function
+             * @name onmouseout
+             * @param {event} eventHandler - Log Event on Mouse Out
+             */
+             onmouseout: function(eventHandler){
                 mouseoverEvent = eventHandler
             },
+            /**
+             * 
+             * @function
+             * @name onmouseup
+             * @param {event} eventHandler - Log Event on Mouse Up
+             */
             onmouseup: function(eventHandler){
                 mouseoutEvent = eventHandler
             },
+            /**
+             * 
+             * @function
+             * @name onmouseover
+             * @param {event} eventHandler - Log Event on Mouse Over
+             */
             onmouseover: function(eventHandler){
                 mouseupEvent = eventHandler
             }
