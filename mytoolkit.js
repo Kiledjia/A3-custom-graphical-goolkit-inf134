@@ -333,8 +333,8 @@ var MyToolkit = (function() {
     var ProgressBar = function(){
         var draw = SVG().addTo('body').size('100%','100%').height(80);
         var frame = draw.group();
-        frame.rect(400,10).stroke("#B20098").fill("White")
-        var bar = draw.rect(0,10).fill("green")
+        frame.rect(400,10).stroke("#B20098").fill("none")
+        var bar = draw.rect(0,10).fill("#5fac5a")
         
 
         return{
