@@ -56,6 +56,8 @@ scrollBar.setHeight(250);
 var progBar = new MyToolkit.ProgressBar;
 progBar.move(50,30);
 progBar.setWidth(350);
+progBar.incrementTo(75);
+
 var slider = new MyToolkit.HorizontalSlide;
 slider.move(100,0);
 slider.setWidth(200);
