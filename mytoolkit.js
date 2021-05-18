@@ -138,9 +138,7 @@ var MyToolkit = (function() {
             frame.add(txt);
             frame.add(toggle);
         }
-        // circle.click(function(event){
-        //     console.log(circle.attr());
-        // });
+
         var clickEvent = null
         btns.map(e => e.node.addEventListener("click", function(){ 
             toggle.show();
@@ -408,7 +406,7 @@ var MyToolkit = (function() {
         return {
             move: function(x, y) {
                 frame.move(x, y);
-                slider.move(frame.x()+1,frame.y())
+                slider.move(frame.x(),frame.y())
                 label.move(frame.x()+55,frame.y()+2)
             },
             setWidth: function(width){
