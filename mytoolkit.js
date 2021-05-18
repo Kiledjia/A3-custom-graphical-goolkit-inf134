@@ -336,7 +336,6 @@ var MyToolkit = (function() {
         frame.rect(400,10).stroke("#B20098").fill("none")
         var bar = draw.rect(0,10).fill("#5fac5a")
         
-
         return{
             move: function(x,y){
                 frame.move(x,y)
@@ -348,8 +347,9 @@ var MyToolkit = (function() {
             getWidth: function(){
                 frame.width()
             },
-            setProgress: function(progress){
-                bar.animate(5000).width((progress/100)*frame.width()).loop()     
+            setIncrement: function(value){
+                bar.animate(5000).width((value/100)*frame.width()).loop()
+                // console.log("Pregress complete")
             }
         }
     }
